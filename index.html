@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f1e9">
+    <title>Student Sign-up</title>
+    <meta name="description" content="Register for the student program using our simple online sign-up form.">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="/styles.css?v=2">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="background-art" aria-hidden="true"></div>
+    <main id="signup-view" class="page-shell" hidden>
+      <header class="masthead">
+        <a class="owner-link" href="/owner">Organizer <span aria-hidden="true">↗</span></a>
+      </header>
+      <section class="signup-layout" aria-labelledby="signup-title">
+        <div class="intro-copy">
+          <p class="eyebrow">STUDENT REGISTRATION <span> / 2026</span></p>
+          <h1 id="signup-title">Make your<br>place here.</h1>
+          <p class="intro-note">A few details and you’re on the list.</p>
+          <div class="index-note"><span class="index-number">01</span><span>One registration per email</span></div>
+        </div>
+        <form id="signup-form" class="form-panel" novalidate>
+          <div class="panel-heading">
+            <span class="panel-index">01 — YOUR DETAILS</span>
+            <span class="required-note">ALL FIELDS REQUIRED</span>
+          </div>
+          <label for="name">Full name</label>
+          <input id="name" name="name" autocomplete="name" minlength="2" maxlength="80" required placeholder="e.g. Jordan Lee">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required placeholder="you@example.com">
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="24" required placeholder="+1 (555) 010-2026">
+          <label class="consent-row" for="consent">
+            <input id="consent" name="consent" type="checkbox" required>
+            <span>I agree that the organizer can access my contact details for program updates.</span>
+          </label>
+          <button class="primary-button" type="submit">Complete registration <span aria-hidden="true">→</span></button>
+          <p class="privacy-note">Your contact details are stored privately and only available to the program organizer. You do not need an account to register.</p>
+          <p id="signup-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+      <footer class="site-footer"><span>REGISTRATION DESK</span><span>CONTACT DETAILS ARE PRIVATE</span></footer>
+    </main>
+
+    <main id="owner-view" class="page-shell owner-shell" hidden>
+      <header class="masthead">
+        <a class="owner-link" href="/">Student form <span aria-hidden="true">↗</span></a>
+      </header>
+      <section id="login-panel" class="owner-login" aria-labelledby="owner-title" hidden>
+        <p class="eyebrow">ORGANIZER ACCESS <span> / PRIVATE</span></p>
+        <h1 id="owner-title">Welcome<br>back.</h1>
+        <form id="login-form" class="form-panel login-form" novalidate>
+          <label for="owner-password">Organizer password</label>
+          <input id="owner-password" name="password" type="password" autocomplete="current-password" required>
+          <button class="primary-button" type="submit">Open registrations <span aria-hidden="true">→</span></button>
+          <p id="login-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+      <section id="roster-panel" class="roster-panel" aria-labelledby="roster-title" hidden>
+        <div class="roster-heading">
+          <div>
+            <p class="eyebrow">ORGANIZER ACCESS <span> / PRIVATE</span></p>
+            <h1 id="roster-title">Registrations<span class="brand-dot">.</span></h1>
+            <p class="roster-count"><span id="registration-count">0</span> students registered</p>
+          </div>
+          <div class="roster-actions">
+            <a class="download-button" href="/api/owner/export.csv" download><span aria-hidden="true">↓</span> Download CSV</a>
+            <button id="logout-button" class="quiet-button" type="button" aria-label="Sign out">Sign out</button>
+          </div>
+        </div>
+        <p id="roster-message" class="form-message" role="status" aria-live="polite"></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>NAME</th><th>EMAIL</th><th>PHONE</th><th>REGISTERED</th></tr></thead>
+            <tbody id="registration-rows"></tbody>
+          </table>
+          <p id="empty-state" class="empty-state" hidden>No registrations yet.</p>
+        </div>
+        <p class="roster-footnote">This roster is private to the organizer account. Refreshes automatically every 30 seconds.</p>
+      </section>
+      <footer class="site-footer"><span>REGISTRATION DESK</span><span>PRIVATE ORGANIZER VIEW</span></footer>
+    </main>
+  </body>
+</html>
